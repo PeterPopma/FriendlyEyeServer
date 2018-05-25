@@ -25,7 +25,9 @@ namespace FriendlyEyeServer
             Application.SetCompatibleTextRenderingDefault(false);
             using (FormMain formMain = new FormMain())
             {
-                WebServiceHost host = new WebServiceHost(new FriendlyEyeServerService(), new Uri("http://localhost:8000"));
+                FriendlyEyeServerService friendlyEyeServerService = new FriendlyEyeServerService();
+                formMain.FriendlyEyeServerService = friendlyEyeServerService;
+                WebServiceHost host = new WebServiceHost(friendlyEyeServerService, new Uri("http://localhost:8000"));
 //                ServiceEndpoint ep = host.AddServiceEndpoint(typeof(IFriendlyEyeServerService), new WebHttpBinding(), "");
                 ServiceDebugBehavior stp = host.Description.Behaviors.Find<ServiceDebugBehavior>();
                 ServiceBehaviorAttribute sba = host.Description.Behaviors.Find<ServiceBehaviorAttribute>();

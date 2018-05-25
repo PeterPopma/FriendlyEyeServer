@@ -131,6 +131,8 @@
     <Compile Include="Forms\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImageFrame.cs" />
+    <Compile Include="ImageSet.cs" />
     <Compile Include="MultipartParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -146,6 +148,7 @@
     </Compile>
     <Compile Include="WinformsGraphicsDevice\GraphicsDeviceService.cs" />
     <Compile Include="WinformsGraphicsDevice\ServiceContainer.cs" />
+    <Compile Include="XRaw.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -153,6 +156,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />

@@ -4,9 +4,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 /// <summary>
-/// MultipartParser http://multipartparser.codeplex.com
 /// Reads a multipart form data stream and returns the filename, content type and contents as a stream.
-/// 2009 Anthony Super http://antscode.blogspot.com
 /// </summary>
 namespace FriendlyEyeServer
 {
@@ -43,8 +41,44 @@ namespace FriendlyEyeServer
                     delimiter = content.Substring(2, content.Substring(2).IndexOf("\r\n"));
                 }
 
+                // Look for name
+                Regex re = new Regex(@"(?<=clientname\=\"")(.*?)(?=\"")");
+                Match match = re.Match(content);
+                if(match.Success)
+                {
+                    Clientname = match.Value;
+                }
+                // Look for address
+                re = new Regex(@"(?<=address\=\"")(.*?)(?=\"")");
+                match = re.Match(content);
+                if (match.Success)
+                {
+                    Address = match.Value;
+                }
+                // Look for telephone
+                re = new Regex(@"(?<=telephone\=\"")(.*?)(?=\"")");
+                match = re.Match(content);
+                if (match.Success)
+                {
+                    Telephone = match.Value;
+                }
+                // Look for imageset_number
+                re = new Regex(@"(?<=imageset_number\=\"")(.*?)(?=\"")");
+                match = re.Match(content);
+                if (match.Success)
+                {
+                    ImagesetNumber = Convert.ToInt32(match.Value);
+                }
+                // Look for sequence_number
+                re = new Regex(@"(?<=sequence_number\=\"")(.*?)(?=\"")");
+                match = re.Match(content);
+                if (match.Success)
+                {
+                    FrameNumber = Convert.ToInt32(match.Value);
+                }
+
                 // Look for Content-Type
-                Regex re = new Regex(@"(?<=Content\-Type:)(.*?)(?=\r\n\r\n)");
+                re = new Regex(@"(?<=Content\-Type:)(.*?)(?=\r\n\r\n)");
                 Match contentTypeMatch = re.Match(content);
 
                 // Look for filename
@@ -143,6 +177,36 @@ namespace FriendlyEyeServer
         }
 
         public byte[] FileContents
+        {
+            get;
+            private set;
+        }
+
+        public string Clientname
+        {
+            get;
+            private set;
+        }
+
+        public string Address
+        {
+            get;
+            private set;
+        }
+
+        public string Telephone
+        {
+            get;
+            private set;
+        }
+
+        public int ImagesetNumber
+        {
+            get;
+            private set;
+        }
+
+        public int FrameNumber
         {
             get;
             private set;

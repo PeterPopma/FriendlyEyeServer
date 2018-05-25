@@ -31,21 +31,76 @@ namespace FriendlyEyeServer.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.richTextBoxAlerts = new System.Windows.Forms.RichTextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.richTextBoxAlerts);
+            this.panel1.Location = new System.Drawing.Point(28, 47);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(580, 411);
+            this.panel1.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label2.Location = new System.Drawing.Point(24, 23);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(401, 20);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "<ID> Name - Address - Telephone - [approvals]:[denials]";
+            // 
+            // richTextBoxAlerts
+            // 
+            this.richTextBoxAlerts.Enabled = false;
+            this.richTextBoxAlerts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBoxAlerts.Location = new System.Drawing.Point(14, 53);
+            this.richTextBoxAlerts.Name = "richTextBoxAlerts";
+            this.richTextBoxAlerts.Size = new System.Drawing.Size(563, 355);
+            this.richTextBoxAlerts.TabIndex = 0;
+            this.richTextBoxAlerts.Text = "";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(25, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(137, 24);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Alerts overview";
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1419, 1015);
+            this.ClientSize = new System.Drawing.Size(658, 475);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.label1);
             this.Name = "FormMain";
-            this.Text = "FriendlyEyeServer v1.0 (c) P.Popma 2018";
+            this.Text = "FriendlyEye Server";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RichTextBox richTextBoxAlerts;
+        private System.Windows.Forms.Label label2;
     }
 }
