@@ -32,9 +32,25 @@ namespace FriendlyEyeServer
             {
                 // Save the file
                 SaveFile(parser.Filename + ".png", parser.FileContents);
-                
+                string hints = "";
+
+                // Upload the first file through FTP
+                if (parser.FrameNumber == 1)
+                {
+                    using (WebClient client = new WebClient())
+                    {
+                        client.Credentials = new NetworkCredential("u16882p12377", "Boarnsyl3");
+                        client.UploadFile("ftp://ftp.gravityone.nl/domains/gravityone.nl/public_html/uploads/" + parser.Filename + ".png", "STOR", "C:\\SavedImages\\" + parser.Filename + ".png");
+                    }
+
+                    // Analyse image through KPN
+                     new KPNClient().AnalyzeImage("http://www.gravityone.nl/uploads/" + parser.Filename + ".png");
+
+                }
+
                 // Store the image in memory
-                FindOrCreateImageSet(parser);
+                FindOrCreateImageSet(parser, hints);
+
             }
 
             XElement root = new XElement("Result");
@@ -128,16 +144,26 @@ namespace FriendlyEyeServer
 
         private void SaveFile(string filename, byte[] fileContents)
         {
-            File.WriteAllBytes("C:\\SavedImages\\" + filename, fileContents);
+            try
+            {
+                File.WriteAllBytes("C:\\SavedImages\\" + filename, fileContents);
+            } catch (DirectoryNotFoundException)
+            {
+                
+            }
         }
 
-        private void FindOrCreateImageSet(MultipartParser parser)
+        private void FindOrCreateImageSet(MultipartParser parser, string hints)
         {
             foreach(ImageSet imageSet in ImageSets)
             {
                 if(imageSet.ID.Equals(parser.ImagesetNumber))
                 {
                     imageSet.Images.Add(new ImageFrame(parser.FileContents, parser.FrameNumber));
+                    if (hints.Length > 0)
+                    {
+                        imageSet.Hints = hints;
+                    }
                     return;
                 }
             }
@@ -145,6 +171,10 @@ namespace FriendlyEyeServer
             // not found; create new
             ImageSet newImageSet = new ImageSet(parser.Clientname, parser.Address, parser.Telephone, parser.ImagesetNumber);
             newImageSet.Images.Add(new ImageFrame(parser.FileContents, parser.FrameNumber));
+            if (hints.Length > 0)
+            {
+                newImageSet.Hints = hints;
+            }
             ImageSets.Add(newImageSet);
         }
     }

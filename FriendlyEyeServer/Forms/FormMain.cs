@@ -49,10 +49,15 @@ namespace FriendlyEyeServer.Forms
             string result = "";
             foreach(ImageSet imageSet in friendlyEyeServerService.ImageSets)
             {
-                result += "<" + imageSet.ID + "> " + imageSet.Name + " - " + imageSet.Address + " - " + imageSet.Telephone + " - " + imageSet.Approvals + ":" + imageSet.Denials + "\r\n"; 
+                result += "<" + imageSet.ID + "> " + imageSet.Name + " - " + imageSet.Address + " - " + imageSet.Telephone + " - " + imageSet.Approvals + ":" + imageSet.Denials + " - " + imageSet.Hints + "\r\n"; 
             }
 
             return result;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string hints = new KPNClient().AnalyzeImage("http://www.gravityone.nl/uploads/Peter_462414_1.png");
         }
     }
 }

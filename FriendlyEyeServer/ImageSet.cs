@@ -8,6 +8,7 @@ namespace FriendlyEyeServer
 {
     class ImageSet
     {
+        string hints;
         string name;
         string address;
         string telephone;
@@ -33,6 +34,7 @@ namespace FriendlyEyeServer
         public List<ImageFrame> Images { get => images; set => images = value; }
         public int ID { get => id; set => id = value; }
         public List<int> ReviewerIDs { get => reviewerIDs; set => reviewerIDs = value; }
+        public string Hints { get => hints; set => hints = value; }
 
         public int ReviewCount() { return approvals + denials; }
     }

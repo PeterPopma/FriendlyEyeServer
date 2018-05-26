@@ -132,7 +132,11 @@
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
     <Compile Include="ImageFrame.cs" />
+    <Compile Include="ImageRecognitionBody.cs" />
+    <Compile Include="ImageRecognitionData.cs" />
     <Compile Include="ImageSet.cs" />
+    <Compile Include="JSONHelper.cs" />
+    <Compile Include="KPNClient.cs" />
     <Compile Include="MultipartParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
