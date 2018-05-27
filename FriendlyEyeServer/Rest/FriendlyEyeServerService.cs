@@ -82,6 +82,8 @@ namespace FriendlyEyeServer
                     }
                     XAttribute attribPurpose = new XAttribute("purpose", imageSet.Purpose);
                     root.Add(attribPurpose);
+                    XAttribute attribPostalCode = new XAttribute("postalcode", imageSet.Purpose);
+                    root.Add(attribPostalCode);
                     XAttribute attribFilename = new XAttribute("filename", imageSet.Name + "_" + imageSet.ID + "_1.png");
                     root.Add(attribFilename);
                     return root;
@@ -193,7 +195,7 @@ namespace FriendlyEyeServer
             }
 
             // not found; create new
-            ImageSet newImageSet = new ImageSet(parser.Clientname, parser.Address, parser.Telephone, parser.ImagesetNumber, parser.Purpose);
+            ImageSet newImageSet = new ImageSet(parser.Clientname, parser.Address, parser.Telephone, parser.ImagesetNumber, parser.Purpose, parser.PostalCode);
             newImageSet.Images.Add(new ImageFrame(parser.FileContents, parser.FrameNumber));
             if (hints.Length > 0)
             {

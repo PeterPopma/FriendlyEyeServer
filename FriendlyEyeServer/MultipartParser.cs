@@ -90,6 +90,18 @@ namespace FriendlyEyeServer
                 // Look for filename
                 re = new Regex(@"(?<=filename\=\"")(.*?)(?=\"")");
                 Match filenameMatch = re.Match(content);
+                if (match.Success)
+                {
+                    Filename = filenameMatch.Value;
+                }
+
+                // Look for postal code
+                re = new Regex(@"(?<=postalcode\=\"")(.*?)(?=\"")");
+                Match postalcodeMatch = re.Match(content);
+                if (match.Success)
+                {
+                    PostalCode = postalcodeMatch.Value;
+                }
 
                 // Did we find the required values?
                 if (contentTypeMatch.Success && filenameMatch.Success)
@@ -219,6 +231,12 @@ namespace FriendlyEyeServer
         }
 
         public string Purpose
+        {
+            get;
+            private set;
+        }
+
+        public string PostalCode
         {
             get;
             private set;

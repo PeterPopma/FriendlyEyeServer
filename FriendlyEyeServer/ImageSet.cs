@@ -13,19 +13,22 @@ namespace FriendlyEyeServer
         string address;
         string telephone;
         string purpose;
+        string postalcode;
         int approvals;
         int denials;
         int id;
+
         List<ImageFrame> images = new List<ImageFrame>();
         List<int> reviewerIDs = new List<int>();
 
-        public ImageSet(string name, string address, string telephone, int id, string purpose)
+        public ImageSet(string name, string address, string telephone, int id, string purpose, string postalcode)
         {
             this.name = name;
             this.address = address;
             this.telephone = telephone;
             this.id = id;
             this.purpose = purpose;
+            this.postalcode = postalcode;
         }
 
         public string Name { get => name; set => name = value; }
@@ -38,6 +41,7 @@ namespace FriendlyEyeServer
         public List<int> ReviewerIDs { get => reviewerIDs; set => reviewerIDs = value; }
         public string Hints { get => hints; set => hints = value; }
         public string Purpose { get => purpose; set => purpose = value; }
+        public string Postalcode { get => postalcode; set => postalcode = value; }
 
         public int ReviewCount() { return approvals + denials; }
     }
