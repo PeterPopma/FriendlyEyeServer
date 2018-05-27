@@ -62,7 +62,13 @@ namespace FriendlyEyeServer
                 {
                     Telephone = match.Value;
                 }
-                // Look for imageset_number
+                // Look for purpose
+                re = new Regex(@"(?<=purpose\=\"")(.*?)(?=\"")");
+                match = re.Match(content);
+                if (match.Success)
+                {
+                    Purpose = match.Value;
+                }                // Look for imageset_number
                 re = new Regex(@"(?<=imageset_number\=\"")(.*?)(?=\"")");
                 match = re.Match(content);
                 if (match.Success)
@@ -207,6 +213,12 @@ namespace FriendlyEyeServer
         }
 
         public int FrameNumber
+        {
+            get;
+            private set;
+        }
+
+        public string Purpose
         {
             get;
             private set;

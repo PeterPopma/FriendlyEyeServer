@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FriendlyEyeServer.Forms;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -16,7 +17,7 @@ namespace FriendlyEyeServer
     public class FriendlyEyeServerService : IFriendlyEyeServerService
     {
         List<ImageSet> imageSets = new List<ImageSet>();
-        const int MAX_NUMBER_OF_REVIEWS = 3;       
+        const int MAX_NUMBER_OF_REVIEWS = 2;       
         const int MINIMUM_FRAMES_RECEIVED = 10;
 
         internal List<ImageSet> ImageSets { get => imageSets; set => imageSets = value; }
@@ -44,7 +45,7 @@ namespace FriendlyEyeServer
                     }
 
                     // Analyse image through KPN
-                     new KPNClient().AnalyzeImage("http://www.gravityone.nl/uploads/" + parser.Filename + ".png");
+                    hints = new KPNClient().AnalyzeImage("http://www.gravityone.nl/uploads/" + parser.Filename + ".png");
 
                 }
 
@@ -74,6 +75,13 @@ namespace FriendlyEyeServer
                     root.Add(attribId);
                     XAttribute attribNumFrames = new XAttribute("num_frames", imageSet.Images.Count);
                     root.Add(attribNumFrames);
+                    if (imageSet.Hints != null)
+                    {
+                        XAttribute attribHints = new XAttribute("hints", imageSet.Hints);
+                        root.Add(attribHints);
+                    }
+                    XAttribute attribPurpose = new XAttribute("purpose", imageSet.Purpose);
+                    root.Add(attribPurpose);
                     return root;
                 }
             }
@@ -136,9 +144,23 @@ namespace FriendlyEyeServer
         public XElement PostReview(int ID, int reviewerID, int value)
         {
             XElement root = new XElement("Result");
-            string result = "success";
-            XAttribute attribResult = new XAttribute("result", result);
-            root.Add(attribResult);
+            ImageSet imageSet = imageSets.Find(o => o.ID.Equals(ID));
+            if (value == 0)
+                imageSet.Denials++;
+            else
+                imageSet.Approvals++;
+            XAttribute attribYes = new XAttribute("yes_votes", imageSet.Approvals);
+            root.Add(attribYes);
+            XAttribute attribNo = new XAttribute("no_votes", imageSet.Denials);
+            root.Add(attribNo);
+
+            if(imageSet.ReviewCount()>=MAX_NUMBER_OF_REVIEWS)
+            {
+                FormCallPolice formCallPolice = new FormCallPolice();
+                formCallPolice.richTextBoxPoliceAPI.Text = "POST api.politie.nl/incident \r\n { \r\n name : \"" + imageSet.Name + "\"\r\n address : \"" + imageSet.Address + "\"\r\n telephone : \"" + imageSet.Telephone + "\"\r\n}";
+                formCallPolice.Show();
+            }
+
             return root;
         }
 
@@ -169,7 +191,7 @@ namespace FriendlyEyeServer
             }
 
             // not found; create new
-            ImageSet newImageSet = new ImageSet(parser.Clientname, parser.Address, parser.Telephone, parser.ImagesetNumber);
+            ImageSet newImageSet = new ImageSet(parser.Clientname, parser.Address, parser.Telephone, parser.ImagesetNumber, parser.Purpose);
             newImageSet.Images.Add(new ImageFrame(parser.FileContents, parser.FrameNumber));
             if (hints.Length > 0)
             {

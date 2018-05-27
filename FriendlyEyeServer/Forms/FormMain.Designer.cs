@@ -35,7 +35,6 @@ namespace FriendlyEyeServer.Forms
             this.label2 = new System.Windows.Forms.Label();
             this.richTextBoxAlerts = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,9 +54,9 @@ namespace FriendlyEyeServer.Forms
             this.label2.ForeColor = System.Drawing.Color.SteelBlue;
             this.label2.Location = new System.Drawing.Point(23, 37);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(919, 37);
+            this.label2.Size = new System.Drawing.Size(818, 37);
             this.label2.TabIndex = 2;
-            this.label2.Text = "<ID> Name - Address - Telephone - [approvals]:[denials] - Hints";
+            this.label2.Text = "<ID> Name - Address - Telephone - [approvals]:[denials]";
             // 
             // richTextBoxAlerts
             // 
@@ -79,23 +78,12 @@ namespace FriendlyEyeServer.Forms
             this.label1.TabIndex = 1;
             this.label1.Text = "Alerts overview";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(532, 21);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(289, 54);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
             this.Name = "FormMain";
@@ -114,6 +102,5 @@ namespace FriendlyEyeServer.Forms
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RichTextBox richTextBoxAlerts;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
     }
 }
