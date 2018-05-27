@@ -34,7 +34,7 @@ namespace FriendlyEyeServer
                 // Save the file
                 SaveFile(parser.Filename + ".png", parser.FileContents);
                 string hints = "";
-
+/*
                 // Upload the first file through FTP
                 if (parser.FrameNumber == 1)
                 {
@@ -48,7 +48,7 @@ namespace FriendlyEyeServer
                     hints = new KPNClient().AnalyzeImage("http://www.gravityone.nl/uploads/" + parser.Filename + ".png");
 
                 }
-
+*/
                 // Store the image in memory
                 FindOrCreateImageSet(parser, hints);
 
@@ -82,6 +82,8 @@ namespace FriendlyEyeServer
                     }
                     XAttribute attribPurpose = new XAttribute("purpose", imageSet.Purpose);
                     root.Add(attribPurpose);
+                    XAttribute attribFilename = new XAttribute("filename", imageSet.Name + "_" + imageSet.ID + "_1.png");
+                    root.Add(attribFilename);
                     return root;
                 }
             }
@@ -158,7 +160,7 @@ namespace FriendlyEyeServer
             {
                 FormCallPolice formCallPolice = new FormCallPolice();
                 formCallPolice.richTextBoxPoliceAPI.Text = "POST api.politie.nl/incident \r\n { \r\n name : \"" + imageSet.Name + "\"\r\n address : \"" + imageSet.Address + "\"\r\n telephone : \"" + imageSet.Telephone + "\"\r\n}";
-                formCallPolice.Show();
+                formCallPolice.ShowDialog();
             }
 
             return root;
