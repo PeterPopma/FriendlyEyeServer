@@ -17,6 +17,7 @@ namespace FriendlyEyeServer
         int approvals;
         int denials;
         int id;
+        DateTime timeCreated;
 
         List<ImageFrame> images = new List<ImageFrame>();
         List<int> reviewerIDs = new List<int>();
@@ -29,6 +30,7 @@ namespace FriendlyEyeServer
             this.id = id;
             this.purpose = purpose;
             this.postalcode = postalcode;
+            TimeCreated = DateTime.Now;
         }
 
         public string Name { get => name; set => name = value; }
@@ -42,6 +44,7 @@ namespace FriendlyEyeServer
         public string Hints { get => hints; set => hints = value; }
         public string Purpose { get => purpose; set => purpose = value; }
         public string Postalcode { get => postalcode; set => postalcode = value; }
+        public DateTime TimeCreated { get => timeCreated; set => timeCreated = value; }
 
         public int ReviewCount() { return approvals + denials; }
     }

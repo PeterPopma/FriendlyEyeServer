@@ -82,7 +82,7 @@ namespace FriendlyEyeServer
                     }
                     XAttribute attribPurpose = new XAttribute("purpose", imageSet.Purpose);
                     root.Add(attribPurpose);
-                    XAttribute attribPostalCode = new XAttribute("postalcode", imageSet.Purpose);
+                    XAttribute attribPostalCode = new XAttribute("postalcode", imageSet.Postalcode);
                     root.Add(attribPostalCode);
                     XAttribute attribFilename = new XAttribute("filename", imageSet.Name + "_" + imageSet.ID + "_1.png");
                     root.Add(attribFilename);

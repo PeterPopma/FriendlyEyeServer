@@ -124,7 +124,6 @@
     <Compile Include="CustomControls\GradientPanel2.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Extensions.cs" />
     <Compile Include="Forms\FormCallPolice.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,8 +140,8 @@
     <Compile Include="ImageRecognitionBody.cs" />
     <Compile Include="ImageRecognitionData.cs" />
     <Compile Include="ImageSet.cs" />
-    <Compile Include="JSONHelper.cs" />
-    <Compile Include="KPNClient.cs" />
+    <Compile Include="KPN\JSONHelper.cs" />
+    <Compile Include="KPN\KPNClient.cs" />
     <Compile Include="MultipartParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
